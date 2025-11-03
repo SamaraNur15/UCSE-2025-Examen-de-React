@@ -22,14 +22,14 @@ export default function MovieDetail() {
         <div className="movie-details">
           { pelicula ?(
             <>
-            <div class="movie-poster">
-              <img src="${movie.poster}" alt="${movie.titulo}" />
+            <div className="movie-poster">
+              <img src={pelicula.poster} alt={pelicula.titulo} />
             </div>
-            <div class="movie-info">
-              <h2>${movie.titulo}</h2>
-              <p><strong>Resumen:</strong> ${movie.resumen}</p>
-              <iframe width="560" height="315" src="${movie.trailer}" frameborder="0" allowfullscreen></iframe>
-              <p><strong>Reparto:</strong> ${movie.reparto}</p>
+            <div className="movie-info">
+              <h2>{pelicula.titulo}</h2>
+              <p><strong>Resumen:</strong> {pelicula.resumen}</p>
+              <iframe width="560" height="315" src={pelicula.trailer} frameborder="0" allowfullscreen></iframe>
+              <p><strong>Reparto:</strong> {pelicula.reparto}</p>
             </div>
             </>
           ) : (<p>Cargando detalles de la película...</p>
