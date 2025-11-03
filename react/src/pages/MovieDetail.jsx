@@ -1,0 +1,41 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+export default function MovieDetail() {
+  const [peliculas, setPeliculas] = useState([])
+  const { id } = useParams();
+  const pelicula = peliculas.find(item => item.id === id)
+  
+      useEffect(() => {
+      fetch('/data/trailerflix.json')
+        .then(response => response.json())
+        .then(data => {
+          setPeliculas(data)
+          console.log(data)/////!!!!!!
+        })
+        .catch(error => console.error('Error fetching peliculas:', error))
+    },[])
+
+  return (
+    <main className="movie-page-container">
+        <button className="back-btn"><Link to={"/"}>← Volver al catálogo</Link></button>
+        <div className="movie-details">
+          { pelicula ?(
+            <>
+            <div class="movie-poster">
+              <img src="${movie.poster}" alt="${movie.titulo}" />
+            </div>
+            <div class="movie-info">
+              <h2>${movie.titulo}</h2>
+              <p><strong>Resumen:</strong> ${movie.resumen}</p>
+              <iframe width="560" height="315" src="${movie.trailer}" frameborder="0" allowfullscreen></iframe>
+              <p><strong>Reparto:</strong> ${movie.reparto}</p>
+            </div>
+            </>
+          ) : (<p>Cargando detalles de la película...</p>
+
+          )}
+        </div>
+    </main>
+  )
+}
