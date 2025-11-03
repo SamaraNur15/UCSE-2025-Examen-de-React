@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 export default function MovieDetail() {
   const [peliculas, setPeliculas] = useState([])
   const { id } = useParams();
-  const pelicula = peliculas.find(item => item.id === id)
+ 
   
       useEffect(() => {
       fetch('/data/trailerflix.json')
@@ -16,6 +16,7 @@ export default function MovieDetail() {
         .catch(error => console.error('Error fetching peliculas:', error))
     },[])
 
+   const pelicula = peliculas.find(item => item.id === id)
   return (
     <main className="movie-page-container">
         <button className="back-btn"><Link to={"/"}>← Volver al catálogo</Link></button>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import MovieCard from '../components/MovieCad'
 
 export default function Home() {
     const [peliculas, setPeliculas] = useState([])
+    const navigate = useNavigate();
 
     useEffect(() => {
     fetch('/data/trailerflix.json')
@@ -29,7 +30,7 @@ export default function Home() {
                 <p>{pelicula.categoria}</p>
                 <p>{pelicula.gen}</p>
                 <p>{pelicula.resumen}</p>
-                <button className="back-home-btn" onClick={() => Navigate("/movie/:id")}>Pelicula</button>
+                <button className="back-home-btn" onClick={() => navigate("/movie/" + pelicula.id)}>Pelicula</button>
             </li>
             ))}
         </ul>
